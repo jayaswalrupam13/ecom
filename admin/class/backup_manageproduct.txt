@@ -1,0 +1,161 @@
+<?php
+class manageproductAction
+{
+	function execute(&$request,$pdoObj,$proObj)
+	{
+		global $FILE_EXT_LIST_2;
+		$mode               = $request->getParameter('mode');
+		$submit             = $request->getParameter('submit');		
+		$pID                = $request->getParameter('pid');		
+		$return             = [];
+		$return['category'] = $proObj->getAllCategory($pdoObj);
+		
+		if($submit){
+			$return['data']['categories_id']     = $request->getParameter('categories_id');
+			$return['data']['sub_categories_id'] = $request->getParameter('sub_categories_id');
+			$return['data']['name'] 		 	 = $request->getParameter('name');
+			$return['data']['mrp'] 			 	 = $request->getParameter('mrp');
+			$return['data']['price'] 	      	 = $request->getParameter('price');
+			$return['data']['qty']           	 = $request->getParameter('qty');
+			$return['data']['short_desc']    	 = $request->getParameter('short_desc');
+			$return['data']['description']   	 = $request->getParameter('description');
+			$return['data']['meta_title']    	 = $request->getParameter('meta_title');
+			$return['data']['meta_desc']     	 = $request->getParameter('meta_desc');
+			$return['data']['meta_keyword']  	 = $request->getParameter('meta_keyword');
+			$return['data']['best_seller']   	 = $request->getParameter('best_seller');
+			$return['data']['added_by']          = $_SESSION['ADMIN_ID'];
+			$return['image_required']            = 'required';	
+			$return['msg']                       = '';	
+			
+			if($mode == 'edit'){
+				$return['id'] = $request->getParameter('id');
+				$result       = $proObj->getProductFromID($pdoObj,$return['id'],'admin');
+				if(is_array($result)){
+					if($return['id'] != $result['id']){				
+						$return['msg'] = "Product already exist";
+					}
+				}
+				if($_FILES['image']['type']!=''){
+					$fileName = $_FILES['image']['name'];
+					if(false === $proObj->checkFileType($fileName) ){
+						$return['msg'] = "Your file is ".$fileName." .Please choose correct file type i,e ".implode(', ',$FILE_EXT_LIST_2);
+					}
+				}
+				if(isset($_FILES['product_images'])){
+					foreach($_FILES['product_images']['name'] as $k=>$v){
+						if($v != "" ){
+							if(false === $proObj->checkFileType($v) ){
+								$return['msg'] = "Wrong Edited Multiple Image - '".$v."'. Image should be of type ".implode(', ',$FILE_EXT_LIST_2);
+							}
+						}
+					}
+				}
+				if($return['msg'] == ''){				
+					if(isset($_FILES['product_images'])){
+						foreach($_FILES['product_images']['name'] as $k=>$v){
+							if($v != "" ){
+								$image = $proObj->setFileName($v);
+								move_uploaded_file($_FILES['product_images']['tmp_name'][$k],PRODUCT_MULTIPLE_IMAGE_SERVER_PATH.$image);
+								
+								if(isset($_POST['product_images_id'][$k])){		//edit 
+									$data = $proObj->getProdImageFromID($pdoObj,$_POST['product_images_id'][$k]);
+									unlink(PRODUCT_MULTIPLE_IMAGE_SERVER_PATH.$data['product_images']);	
+									$proObj->editProductImage($pdoObj,$image,$_POST['product_images_id'][$k]);   									
+								}
+								else{  								
+									$proObj->addProductImages($pdoObj,$return['id'],$image);  //add
+								}
+							}
+						}	
+					}					
+					if($_FILES['image']['name']!=''){
+						$return['data']['image'] = $proObj->setFileName($_FILES['image']['name']);
+						move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH.$return['data']['image']);
+						$proObj->editProductWithImg($pdoObj,$return['data'],$return['id']);
+						unlink(PRODUCT_IMAGE_SERVER_PATH.$result['image']);					
+					}
+					else{
+						$proObj->editProductNoImg($pdoObj,$return['data'],$return['id']);
+					}
+					header('location:product');
+					die();
+				}
+			}
+			elseif($mode == 'add'){
+				$result = $proObj->getProductFromName($pdoObj,$return['data']['name']);
+				if(is_array($result)){
+					$return['msg']            = "Product already exist";
+					$return['image_required'] = 'required';
+				}
+				elseif( ($_FILES['image']['name'] == '') || ($_FILES['image']['size'] == 0) ){	
+					$return['msg'] = "Please choose a file";
+				}
+				elseif(false === $proObj->checkFileType($_FILES['image']['name']) ){
+					$return['msg'] = "Please choose correct file type i,e ".implode(', ',$FILE_EXT_LIST_2);
+				}
+				elseif(isset($_FILES['product_images'])){
+					foreach($_FILES['product_images']['name'] as $k=>$v){
+						if(false === $proObj->checkFileType($v) ){
+							$return['msg'] = "Wrong Added Multiple Image - '".$v."'. Image should be of type ".implode(', ',$FILE_EXT_LIST_2);
+						}
+					}
+				}								
+			
+				if($return['msg'] == ''){
+					$return['data']['image'] = $proObj->setFileName($_FILES['image']['name']);
+					move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH.$return['data']['image']);
+					$productID = $proObj->addProduct($pdoObj,$return['data']);
+					if(isset($_FILES['product_images'])){
+						foreach($_FILES['product_images']['name'] as $k=>$v){
+							$image = $proObj->setFileName($v);
+							move_uploaded_file($_FILES['product_images']['tmp_name'][$k],PRODUCT_MULTIPLE_IMAGE_SERVER_PATH.$image);
+							$proObj->addProductImages($pdoObj,$productID,$image);
+						}
+					}
+					header('location:product');
+					die();
+				}
+			}			
+		}
+		else{
+			if($mode == 'edit'){
+				if(isset($pID) && ($pID > 0)){
+					$data = $proObj->getProdImageFromID($pdoObj,$pID);
+					$proObj->deleteProdImages($pdoObj,$pID);
+					unlink(PRODUCT_MULTIPLE_IMAGE_SERVER_PATH.$data['product_images']);					
+				}			
+				$return['image_required'] = '';
+				$return['id']             = $request->getParameter('id');
+				$result                   = $proObj->getProductFromID($pdoObj,$return['id'],'admin');
+				if(is_array($result)){
+					$return['data'] = $result;
+					$images         = $proObj->getProdImagesFromProdID($pdoObj,$return['id']);
+					if(is_array($images)){
+						$return['data']['multiple_images'] = $images;
+					}
+				}
+			}
+			else{
+				$return['msg']                       = '';
+				$return['data']['categories_id']     = '';
+				$return['data']['sub_categories_id'] = '';
+				$return['data']['name']              = '';
+				$return['data']['mrp']               = '';
+				$return['data']['price']             = '';
+				$return['data']['qty']               = '';
+				$return['data']['image']             = '';
+				$return['data']['short_desc']        = '';
+				$return['data']['description']       = '';
+				$return['data']['meta_title']        = '';
+				$return['data']['meta_desc']         = '';
+				$return['data']['meta_keyword']      = '';				
+				$return['data']['best_seller']       = '';				
+				$return['data']['added_by']          = '';				
+				$return['image_required']            = 'required';					
+			}			
+		}
+		return $return;				
+	}
+	
+}
+?>

@@ -1,0 +1,13 @@
+27-Jun-2022 18:17:23 :	[URL: forgotpassword]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: q1t1lc3nqsnqfke2733e43cn2p]	[Module: Forgot_Pwd: SENDEMAIL():]	[Error: phpmailerException: SMTP Error: Could not authenticate.<]
+27-Jun-2022 18:46:13 :	[URL: contact]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: q1t1lc3nqsnqfke2733e43cn2p]	[Module: Contact_EmailOpen: SENDEMAIL():]	[Error: phpmailerException: SMTP Error: Could not authenticate.<]
+28-Jun-2022 12:49:45 :	[URL: contact]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: kfnrfv6sj04vatfd7l0pgfek0p]	[Module: Contact_EmailOpen: SENDEMAIL():]	[Error: phpmailerException: SMTP Error: Could not authenticate.<]
+28-Jun-2022 13:07:45 :	[URL: contact]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: kfnrfv6sj04vatfd7l0pgfek0p]	[Module: Contact_EmailOpen: SENDEMAIL():]	[Error: phpmailerException: SMTP Error: Could not authenticate.<]
+28-Jun-2022 15:38:06 :	[URL: forgotpassword]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: kfnrfv6sj04vatfd7l0pgfek0p]	[Module: Forgot_Pwd: SENDEMAIL():]	[Error: phpmailerException: The following From address failed: customercare@ecom.com : MAIL FROM command failed,Request failed; Mailbox unavailable
+,550,SMTP server error: MAIL FROM command failed Detail: Request failed; Mailbox unavailable
+ SMTP code: 550<]
+28-Jun-2022 15:39:08 :	[URL: forgotpassword]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: kfnrfv6sj04vatfd7l0pgfek0p]	[Module: Forgot_Pwd: SENDEMAIL():]	[Error: phpmailerException: The following From address failed: customercare@ecom.com : MAIL FROM command failed,Request failed; Mailbox unavailable
+,550,SMTP server error: MAIL FROM command failed Detail: Request failed; Mailbox unavailable
+ SMTP code: 550<]
+28-Jun-2022 15:40:14 :	[URL: forgotpassword]:	[REMOTE_ADDR: ::1]	[USER_EMAIL: Visitor]	[session_id: kfnrfv6sj04vatfd7l0pgfek0p]	[Module: Forgot_Pwd: SENDEMAIL():]	[Error: phpmailerException: The following From address failed: customercare@yahoo.co.in : MAIL FROM command failed,Request failed; Mailbox unavailable
+,550,SMTP server error: MAIL FROM command failed Detail: Request failed; Mailbox unavailable
+ SMTP code: 550<]

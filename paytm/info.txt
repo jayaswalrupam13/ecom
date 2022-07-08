@@ -1,0 +1,4 @@
+Testing OTP credentials are as follows: 
+
+
+Mobile Number: 7777777777. Password: Paytm12345. OTP: 489871.
