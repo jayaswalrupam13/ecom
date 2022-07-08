@@ -1,10 +1,10 @@
 <?php
 
 $DB_TYPE     = "mysql";
-$DB_NAME     = "ecom";
+$DB_NAME     = "###";
 $DB_HOST     = "localhost";
-$DB_USERNAME = "rupam";
-$DB_PASSWORD = "rupam";
+$DB_USERNAME = "###";
+$DB_PASSWORD = "###";
 $CHARSET     = "utf8mb4";
 
 define('SERVER_PATH',$_SERVER['DOCUMENT_ROOT'].'/ecom/');
@@ -119,29 +119,29 @@ $BOOTSTRAP_JS_URL   = $HTDOCS_URL."/bootstrap-5.1.3-dist/js/bootstrap.bundle.min
 
 //paytm
 $PAYTM_PAYMENT_PATH         = $HOSTNAME_PATH."/paytm";						//C:/xampp/htdocs/ecom/paytm
-$PAYTM_TEST_MERCHANT_KEY    = "ZdYg5&AP&Q2e0waI";
-$PAYTM_TEST_MERCHANT_ID     = "esaqUR12413794144394";
+$PAYTM_TEST_MERCHANT_KEY    = "&###";
+$PAYTM_TEST_MERCHANT_ID     = "###";
 $PAYTM_PAYMENT_SITE_URL     = "securegw-stage.paytm.in";
 $PAYTM_PAYMENT_REDIRECT_URL = $HOSTNAME_URL."/typepaytm?action=callback";						//http://localhost/ecom/paytm
 
 
 //instamojo
 $INS_PAYMENT_PATH           = $HOSTNAME_PATH."/instamojo";					//C:/xampp/htdocs/ecom/instamojo
-$INS_PRIVATE_API_KEY        = "test_bbf413e9f6f3db7bc101275e67b";
-$INS_PRIVATE_AUTH_TOKEN     = "test_191ddca6d6d57da4913052a4c0e";
-$INS_PRIVATE_SALT           = "ac6109f098c743bfa2562a078cebcd2d";
+$INS_PRIVATE_API_KEY        = "##";
+$INS_PRIVATE_AUTH_TOKEN     = "###";
+$INS_PRIVATE_SALT           = "###";
 $INS_PAYMENT_SITE_URL       = "test.instamojo.com";
 $INS_PAYMENT_REDIRECT_URL   = $HOSTNAME_URL."/typeinstamojo?action=callback";					//http://localhost/ecom/instamojo
 
 //payu
 $PAYU_PAYMENT_PATH         = $USER_APP_ROOT_DIR."/payu";
 $PAYU_PAYMENT_URL          = $HOSTNAME_URL."/payu";
-//$PAYU_TEST_MERCHANT_KEY    = "gtKFFx";   //vishal
-//$PAYU_TEST_SALT            = "eCwWELxi"; //vishal
+//$PAYU_TEST_MERCHANT_KEY    = "###";   //vishal
+//$PAYU_TEST_SALT            = "##"; //vishal
 
-$PAYU_TEST_MERCHANT_KEY    = "Lpa53U";
-$PAYU_TEST_SALT            = "bOMYRCyuBwLClef3yTx9x4oj961nW2JP";  //ver 1
-$PAYU_TEST_SALT_2          = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfhirbeBUgJe2rORcc9vdJBxh1nDJ19ICcp3jOTBwqaaW4gVn6uO5SBa/+ksRmPzEIkP2BK6M/PIjHhR6batJI7sdqR3fTy653g4z8YTNP+BuHcCPwZucPK/CkBoyxSe7FF2kuL1TyLJWHMmePqOXwlLP797TNYPV4kgDoeyBA4w8YC/dn1qZAtIWnlGcwfAQiZv+yzhkv3IzMKDCgyLR8m5glqTSUJRDzZh6Dx55FopiBVJV90nMh03HjV0u0FOJSYvmGGWrcnqKg82PRhM9I0wh4X24kf+EmOvhUbkuNpYvDI6bA+4IlpelmPmUauflURSCav/lRph6r7wC/A/HPAgMBAAECggEBAKwbxJgkiC+uxKfYV6Gnz5RdcEnusTP9xaHZmb1PAUju+/lrL/tLtcVWN8NPAwavlXPBIFD7ZsFkPPVT3NNSlwQtR0LgMLXV2UqQ8lfKCBaFNb09bY7HzRXzgWDq4h4IjV8YvZYgP8oQ5jmpZ/BH3nU2KrfSbVbOV3Q1B5n6ZEVQn0qY4Gp4KiPQftVCN5mLFIhl3PMauzb9B/d6Z7UDkRhuBekKBV25PY8i3oeHAUZoGT3oiPhhuYv1p7xZR5Wnd9DoLEMxUOwx+5egvfDTOFFPjnH0v4YH9vkN/5U5taMvCWCk1ALyxUVmkk2jf3pPVvb47stsImvuCJBEVPuzyIECgYEA9/HonmULT0mBJBkvfZXT70Wc1Sq/rC2nE3TC15XWQyNhvZ1uXGswFpYM74jBStbbX6w5HQjztONntzlzc/TazzqthXbwhZNCpl3xY5QRV3D6fFrHZP254XYRP0k2q8y5o9bVNg5y12OkSXDDXkp2/lLnLyOMOHMdFMlonr3ZWyECgYEA5skoMUV49Y/OpVWcRrer4DTBdC2dQ1l8VJ6ZskrH4PJ4ISzSmYnkIPLsFSVtoYVwHkUAUyoWtdBbvX6SDd9azIYHbdpZxQDw4fbzKL7+Eft1uV7O1ABfWq9Ge/UKijVlo0Zx07c83QBOG9fyI04fKGNPKUxziJPbSq/7X3UqHu8CgYAfHRwzxDpHGNI71W1ANS0DOZkUpuimkpQEvQI2S3c3tZjuUnMm5cyDCRFWfbLD0XJ17wa7vgPXDzJUq8DxLCjJGHPt658DJBeZCPDhrhL/Bg5ozHt5EN3ijQ5dArL5nBcvmCXpQqbmoHpdPOlHS9Di2URphexyqP9dPGkEgo5kAQKBgHvYnOH79xJH7svYqjlk3S4/AUV4KPl4bvj192KvMJ3tYDvlUsqkLbDky335jOBtvCHyQ19dqbw9qM2Cu5wILTCuCBSSZTQL8jhAjnJiM/OwbpdgYjtwS7tdbcSdVd+fEgDRj8nefiHWxRO6Ca2agavpxxRRe3piZf6pe4rZVBYvAoGAaYqFIjPDo9jXFofQ+P4ZrWe8PCL17cbSwxlObcxiQ2+x4LKX9efNqDh+jP6xCiwGqgY2Hm7cXHsky/A34Ky0QRsDKXL9an/dahun7tj1OW9V7DvdnxXAuS7Y7Jo5jDdok0uYEvv0EcHeKcT5L+6lSSTrdw5Y/eVNWN9o0jbHqo0=";  //ver 2
+$PAYU_TEST_MERCHANT_KEY    = "####";
+$PAYU_TEST_SALT            = "###";  //ver 1
+$PAYU_TEST_SALT_2          = "######b##";  //ver 2
 
 
 $PAYU_PAYMENT_SITE_URL     = "https://test.payu.in";
@@ -152,22 +152,22 @@ $PAYU_PAYMENT_FAILURE_URL  = $PAYU_PAYMENT_URL."/payment_fail.php";
 $SMTP_PATH  = $HTDOCS_PATH."/packages/smtp";
 $SMTP_HOST  = "smtp.gmail.com";
 $SMTP_PORT  = 587;
-$SMTP_UNAME = "rupam.jaiswal@gmail.com";
-$SMTP_PWD   = "lucknow2";
-$SMTP_FROM  = "rupam.jaiswal@gmail.com";
+$SMTP_UNAME = "##";
+$SMTP_PWD   = "##";
+$SMTP_FROM  = "##";
 
 //YAHOO SMTP
 $YAHOO_SMTP_HOST      = "smtp.mail.yahoo.com";
 $YAHOO_SMTP_PORT      = 465;
-$YAHOO_SMTP_UNAME     = "jaiswalrupam@yahoo.co.in";
-$YAHOO_SMTP_PWD       = "gxqooptjyhbkghvm";
-$YAHOO_SMTP_FROM      = "jaiswalrupam@yahoo.co.in";
+$YAHOO_SMTP_UNAME     = "###";
+$YAHOO_SMTP_PWD       = "####";
+$YAHOO_SMTP_FROM      = "####";
 $YAHOO_SMTP_FROM_NAME = "eCom Shopping Destination";//"Rupam Jayaswal";
 
 $SENDGRID_API_KEY = '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';
 
 //TXTLOCAL SMS
-$TXTLOCAL_APIKEY ='NDYzMjM5NTQ1ODRmNjg3MTYzNmE3MDc3NGQ2MzQxMzM=';
+$TXTLOCAL_APIKEY ='##';
 $TXTLOCAL_URL    = 'https://api.textlocal.in/send/';
 //$sender = 'TXTLCL';
 
