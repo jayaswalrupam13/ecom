@@ -33,7 +33,6 @@ class Request{
 
 $request = new Request();
 
-//$do = isset($_REQUEST["do"]) ? $request->getParameter("do") :  '';
 $do = $request->getParameter("do");
 
 if(isset($_SESSION['ADMIN_LOGIN']) && $do == 'orderpdf'){
@@ -42,7 +41,7 @@ elseif( !isset($_SESSION['USER_LOGIN']) && ($do == 'wishlist' || $do == 'profile
 	header("Location:$HOSTNAME_URL");
 	die();
 }
-//echo 'OPT - '.$_SESSION['EMAIL_OTP'];
+
 $pdoObj       = new PDOClass();
 $proObj       = new process();
 $pagiObj      = new pagination();
