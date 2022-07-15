@@ -26,7 +26,6 @@ class Request{
 		}
 		else{
 			$str = trim(htmlentities($str,ENT_QUOTES));
-			//$str = trim($str);
 		}
 		return $str;
 	}
@@ -90,12 +89,11 @@ $lang = "hi";
 $lang = "en-us"; echo "<pre>";print_r();
 include($LANG_PATH."/".$lang.".php");*/
 
-//echo "<br/>do is $do +";//die();
 $position = stripos($do, 'index.php');
 if($position){
 	$do = substr($do,0,$position-1);
 }
-//echo "<br/>position is $position, do is $do";//die();
+
 switch($do)
 {
 	case "category" :
@@ -314,7 +312,7 @@ switch($do)
 		break;
 	}	
 	case "search" :
-	{//Merchant ID: 8527279 .payu.in
+	{
 		include_once $USER_CLASS_PATH."/searchAction.php";
 		$searchAction = new searchAction();
 		$return = $searchAction->execute($request,$pdoObj,$proObj);		
